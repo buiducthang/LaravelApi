@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comment;
+use JWTAuth;
 
 class CommentController extends Controller
 {
     public function createComment(Request $request)
     {
+        if(!$user = JWTAuth::parseToken()->authenticate()){
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
         $comment = new Comment();
         $comment->content = $request->input('content');
         $comment->save();

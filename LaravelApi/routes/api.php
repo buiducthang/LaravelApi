@@ -28,3 +28,11 @@ Route::put('/comment/{id}',[
 Route::delete('/comment/{id}',[
     'uses' => 'CommentController@deleteComment'
 ]);
+
+Route::post('/user',[
+    'uses' => 'UserController@SignUp'
+]);
+
+Route::post('/user/signin',[
+    'uses' => 'UserController@SignIn'
+]);
