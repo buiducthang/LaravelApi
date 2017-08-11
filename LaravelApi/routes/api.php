@@ -14,7 +14,8 @@ use Illuminate\Http\Request;
 */
 
 Route::post('/comment',[
-    'uses' => 'CommentController@createComment'
+    'uses' => 'CommentController@createComment',
+    'middleware' => 'auth.jwt'
 ]);
 
 Route::get('/comments',[
@@ -22,11 +23,13 @@ Route::get('/comments',[
 ]);
 
 Route::put('/comment/{id}',[
-    'uses' => 'CommentController@updateComment'
+    'uses' => 'CommentController@updateComment',
+    'middleware' => 'auth.jwt'
 ]);
 
 Route::delete('/comment/{id}',[
-    'uses' => 'CommentController@deleteComment'
+    'uses' => 'CommentController@deleteComment',
+    'middleware' => 'auth.jwt'
 ]);
 
 Route::post('/user',[

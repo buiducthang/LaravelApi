@@ -31,7 +31,6 @@ class UserController extends Controller
     public function SignIn(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
             'email' => 'required|email',
             'password' => 'required'
         ]);

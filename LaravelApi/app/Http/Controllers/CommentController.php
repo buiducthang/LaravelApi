@@ -10,14 +10,14 @@ class CommentController extends Controller
 {
     public function createComment(Request $request)
     {
-        if(!$user = JWTAuth::parseToken()->authenticate()){
-            return response()->json(['message' => 'User not found'], 404);
-        }
-
+        // if(!$user = JWTAuth::parseToken()->authenticate()){
+        //     return response()->json(['message' => 'User not found'], 404);
+        // }
+        $user = JWTAuth::parseToken()->toUser();
         $comment = new Comment();
         $comment->content = $request->input('content');
         $comment->save();
-        return response()->json(['comment' => $comment], 200);
+        return response()->json(['comment' => $comment, 'user' => $user], 200);
     }
 
     public function getComments()
@@ -43,7 +43,7 @@ class CommentController extends Controller
             return response()->json(['message' => "Not found"], 404);
         }
 
-        $comment->content = $request->input('cotent');
+        $comment->content = $request->input('content');
         $comment->save();
         return response()->json(['comment' => $comment], 200);
     }
